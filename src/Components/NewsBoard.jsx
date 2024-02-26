@@ -4,11 +4,21 @@ function NewsBoard({category,country}) {
 
   const [article,setArticle] = useState([]);
 
-  useEffect(()=>{
-    let url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${import.meta.env.VITE_API_KEY}`;
-    fetch(url).then((resposnse)=>resposnse.json()).then(data => setArticle(data.articles));
-  },[category,country])
-
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${import.meta.env.VITE_API_KEY}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        setArticle(data.articles);
+      } catch (error) {
+        // Handle errors here
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchData();
+  }, [category, country]);
   const date = new Date().toString().slice(0,16);
 
   let countryName;
