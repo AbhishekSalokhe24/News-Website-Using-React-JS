@@ -62,8 +62,8 @@ function NewsBoard({category,country}) {
        <button type="button" className="btn btn-danger btn-lg" >Date: {date}</button>
       <h2 className="text-center m-4 fw-bold">Latest News in <span className="badge bg-danger">{countryName}</span></h2>
       <div style={{display:"flex", flexWrap:"wrap",alignItems:"center", justifyContent:"center"}}>
-      {article.map((news,index)=>{
-        return <NewsItem key={index} description={news.description} src={news.urlToImage} url={news.url} title={news.title}  />
+      {article?.map((news,index)=>{
+        return <NewsItem key={index} description={news?.description} src={news?.urlToImage} url={news?.url} title={news?.title}  />
       })}
       </div>
     
